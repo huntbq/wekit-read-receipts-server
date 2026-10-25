@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { INVITE_CODE, RATE_LIMITS, loginDelayMs } from "../config";
+import { INVITE_CODE, RATE_LIMITS, loginDelayMs, isAdmin } from "../config";
 import { spaHash } from "../spa";
 import {
   audit,
@@ -43,6 +43,9 @@ authApp.post("/auth/register", async (c) => {
     return c.json({ error: "invalid JSON" }, 400);
   }
   const wxId = typeof body.wxId === "string" ? body.wxId : "";
+  if (!isAdmin(wxId)) {
+  return c.json({ error: "registration disabled" }, 403);
+}
   const password = typeof body.password === "string" ? body.password : "";
   if (!isValidWxId(wxId) || password.length < 8 || password.length > 128) {
     return c.json({ error: "invalid credentials" }, 400);
