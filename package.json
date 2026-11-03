@@ -8,13 +8,13 @@
     "bun": ">=1.4.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261021.1",
-    "@types/bun": "1.4.2",
+    "@cloudflare/workers-types": "^5.20261103.1",
+    "@types/bun": "1.4.4",
     "typescript": "^7.0.2",
     "wrangler": "4.142.0"
   },
   "dependencies": {
-    "hono": "4.13.13"
+    "hono": "4.13.16"
   },
   "scripts": {
     "dev": "bun --watch index.ts",
